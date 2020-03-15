@@ -1,43 +1,37 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using GraphQL;
-using GraphQL.Types;
 
 using backend.Context;
-using backend.GraphQL;
+using EntityGraphQL.Schema;
+using System.Net;
+using EntityGraphQL;
 
 namespace backend.Controllers
 {
-    [Route("graphql")]
+    [Route("api/graphql")]
     [ApiController]
     public class GraphQLController : Controller
     {
         private readonly ApplicationCtx _db;
-        public GraphQLController(ApplicationCtx db) => _db = db;
+        private readonly MappedSchemaProvider<ApplicationCtx> _schemaProvider;
+
+        public GraphQLController(ApplicationCtx db, MappedSchemaProvider<ApplicationCtx> schemaProvider)
+        {
+            _db = db;
+            _schemaProvider = schemaProvider;
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
+        public object Post([FromBody] QueryRequest query)
         {
-            var inputs = query.Variables.ToInputs();
-            var schema = new Schema
+            try
             {
-                Query = new AuthorQuery(_db)
-            };
-
-            var result = await new DocumentExecuter().ExecuteAsync(_ =>
-            {
-                _.Schema = schema;
-                _.Query = query.Query;
-                _.OperationName = query.OperationName;
-                _.Inputs = inputs;
-            });
-
-            if (result.Errors?.Count > 0)
-            {
-                return BadRequest(result.Errors.FirstValue(e => e.Data));
+                var results = _db.QueryObject(query, _schemaProvider);
+                return results;
             }
-
-            return Ok(result);
+            catch
+            {
+                return HttpStatusCode.InternalServerError;
+            }
         }
     }
 }

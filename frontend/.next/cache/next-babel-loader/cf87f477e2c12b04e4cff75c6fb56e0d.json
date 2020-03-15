@@ -1,0 +1,1 @@
+{"ast":null,"code":"import 'antd/dist/antd.min.css';","map":{"version":3,"sources":["/Users/jimmyfargo/Projects/graphql-fun/frontend/src/pages/_app.js"],"names":[],"mappings":"AAAA,OAAO,wBAAP","sourcesContent":["import 'antd/dist/antd.min.css';\n"]},"metadata":{},"sourceType":"module"}

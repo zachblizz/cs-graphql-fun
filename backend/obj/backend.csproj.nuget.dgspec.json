@@ -39,6 +39,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "EntityGraphQL": {
+              "target": "Package",
+              "version": "[0.32.1, )"
+            },
             "GraphQL": {
               "target": "Package",
               "version": "[2.4.0, )"
@@ -50,10 +54,6 @@
             "graphiql": {
               "target": "Package",
               "version": "[1.2.0, )"
-            },
-            "graphql-dotnet": {
-              "target": "Package",
-              "version": "(, )"
             }
           },
           "imports": [

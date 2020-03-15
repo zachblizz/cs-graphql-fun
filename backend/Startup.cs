@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 using backend.Context;
 using GraphiQl;
+using EntityGraphQL.Schema;
 
 namespace backend
 {
@@ -28,6 +29,7 @@ namespace backend
                 context.UseInMemoryDatabase("book-store");
             });
 
+            services.AddSingleton(SchemaBuilder.FromObject<ApplicationCtx>());
             services.AddControllers();
         }
 
@@ -42,7 +44,7 @@ namespace backend
             app.UseRouting();
 
             // Use GraphiQl.NET
-            app.UseGraphiQl("/graphql");
+            app.UseGraphiQl("/api/graphql");
 
             // app.UseMvc();
             app.UseEndpoints(endpoints =>

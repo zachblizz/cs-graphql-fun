@@ -49,3 +49,6 @@
 /Users/jimmyfargo/Projects/graphql-fun/backend/obj/Debug/netcoreapp3.1/backend.csproj.CopyComplete
 /Users/jimmyfargo/Projects/graphql-fun/backend/obj/Debug/netcoreapp3.1/backend.dll
 /Users/jimmyfargo/Projects/graphql-fun/backend/obj/Debug/netcoreapp3.1/backend.pdb
+/Users/jimmyfargo/Projects/graphql-fun/backend/bin/Debug/netcoreapp3.1/Antlr4.Runtime.dll
+/Users/jimmyfargo/Projects/graphql-fun/backend/bin/Debug/netcoreapp3.1/EntityGraphQL.dll
+/Users/jimmyfargo/Projects/graphql-fun/backend/bin/Debug/netcoreapp3.1/Humanizer.dll

@@ -13,7 +13,8 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">/Users/jimmyfargo/.nuget/packages/newtonsoft.json/10.0.3</PkgNewtonsoft_Json>
     <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/Users/jimmyfargo/.nuget/packages/microsoft.codeanalysis.analyzers/1.1.0</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgAntlr4_CodeGenerator Condition=" '$(PkgAntlr4_CodeGenerator)' == '' ">/Users/jimmyfargo/.nuget/packages/antlr4.codegenerator/4.6.6</PkgAntlr4_CodeGenerator>
+    <PkgAntlr4 Condition=" '$(PkgAntlr4)' == '' ">/Users/jimmyfargo/.nuget/packages/antlr4/4.6.6</PkgAntlr4>
   </PropertyGroup>
 </Project>

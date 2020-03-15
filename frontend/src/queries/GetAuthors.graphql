@@ -1,0 +1,8 @@
+query GetAuthor($id: Int!) {
+    author(id: %id) {
+        name
+        books {
+            name
+        }
+    }
+}

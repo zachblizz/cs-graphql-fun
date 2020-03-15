@@ -12,41 +12,9 @@ namespace backend
         public static void Main(string[] args)
         {
             IHost host = CreateHostBuilder(args).Build();
-
-            // SEED the DB
             using (IServiceScope scope = host.Services.CreateScope())
             {
-                ApplicationCtx ctx = scope.ServiceProvider.GetRequiredService<ApplicationCtx>();
-
-                var authorDbEntry = ctx.Authors.Add(
-                    new Author
-                    {
-                        Name = "jimmyfargo",
-                    }
-                );
-
-                ctx.SaveChanges();
-
-                ctx.Books.AddRange(
-                    new Book
-                    {
-                        Id = "1",
-                        Name = "First Book",
-                        Published = true,
-                        AuthorId = authorDbEntry.Entity.Id,
-                        Genre = "Mystery"
-                    },
-                    new Book
-                    {
-                        Id = "2",
-                        Name = "Second Book",
-                        Published = true,
-                        AuthorId = authorDbEntry.Entity.Id,
-                        Genre = "Crime"
-                    }
-                );
-
-                ctx.SaveChanges();
+                Seed(scope);
             }
 
             host.Run();
@@ -58,5 +26,41 @@ namespace backend
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        private static void Seed(IServiceScope scope)
+        {
+            // SEED the DB
+            ApplicationCtx ctx = scope.ServiceProvider.GetRequiredService<ApplicationCtx>();
+
+            var authorDbEntry = ctx.Author.Add(
+                new Author
+                {
+                    Name = "jimmyfargo",
+                }
+            );
+
+            ctx.SaveChanges();
+
+            ctx.Books.AddRange(
+                new Book
+                {
+                    Id = "1",
+                    Name = "First Book",
+                    Published = true,
+                    AuthorId = authorDbEntry.Entity.Id,
+                    Genre = "Mystery"
+                },
+                new Book
+                {
+                    Id = "2",
+                    Name = "Second Book",
+                    Published = true,
+                    AuthorId = authorDbEntry.Entity.Id,
+                    Genre = "Crime"
+                }
+            );
+
+            ctx.SaveChanges();
+        }
     }
 }
